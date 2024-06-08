@@ -27,17 +27,25 @@ public class SubImgCharMatcher {
 
     public void addChar(char c) {
         charset.add(c);
+        //@TODO here we can make it better by not creating the map again we can save the calculated brightness and add the new char to the map
         initCharBrightnessMap(charset);
     }
 
     public void removeChar(char c) {
         charset.remove(c);
+        //@TODO here we can make it better by not creating the map again we can save the calculated brightness and add the new char to the map
         initCharBrightnessMap(charset);
+    }
+
+    //@TODO This method was added to be able to fetch and was not on the original code
+    public List<Character> getCharset() {
+        return charset;
     }
 
     private void initCharBrightnessMap(List<Character> charset) {
         LinkedList<Double> brightness = calculateBrightnessForChars(this.charset);
         LinkedList<Double> normalized_brightness = normalizeBrightnessList(brightness);
+        charBrightnessMap = new HashMap<>();
         for (int i = 0; i < charset.size(); i++) {
             charBrightnessMap.put(charset.get(i), normalized_brightness.get(i));
         }

@@ -1,2 +1,6 @@
-package ascii_art;public interface Command {
+package ascii_art;
+
+public interface Command {
+
+    public void execute(String [] args);
 }
